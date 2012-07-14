@@ -16,6 +16,8 @@ do
 
      comm -23 <(sort ${CURRENT_FILE}) <(sort ${OLD_FILE}) > ${NEW_FILE}
 
+     find . -size 0 -name "*.csv" -exec rm -f '{}' \;  #remove empty files
+
      mv ${CURRENT_FILE} ${OLD_FILE}
 
 done
