@@ -3,14 +3,19 @@ REPO=./repo
 
 mkdir -p ${REPO}
 
-FRIENDS_FILE=niftypuce_tag_friends
+for TAG in friends 
+do
 
-cp -f ~/Downloads/${FRIENDS_FILE}.tsv ${REPO}
+     TAG_FILE=niftypuce_tag_${TAG}
 
-CURRENT_FILE=${REPO}/${FRIENDS_FILE}.tsv 
-OLD_FILE=${REPO}/${FRIENDS_FILE}.csv 
-NEW_FILE=${FRIENDS_FILE}_new.csv 
+     cp -f ~/Downloads/${TAG_FILE}.tsv ${REPO}
 
-comm -23 <(sort ${CURRENT_FILE}) <(sort ${OLD_FILE}) > ${NEW_FILE}
+     CURRENT_FILE=${REPO}/${TAG_FILE}.tsv 
+     OLD_FILE=${REPO}/${TAG_FILE}.csv 
+     NEW_FILE=${TAG_FILE}_new.csv 
 
-mv ${CURRENT_FILE} ${OLD_FILE}
+     comm -23 <(sort ${CURRENT_FILE}) <(sort ${OLD_FILE}) > ${NEW_FILE}
+
+     mv ${CURRENT_FILE} ${OLD_FILE}
+
+done
