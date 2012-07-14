@@ -3,7 +3,7 @@ REPO=./repo
 
 mkdir -p ${REPO}
 
-for TAG in friends 
+for TAG in friends recos wish_list
 do
 
      TAG_FILE=niftypuce_tag_${TAG}
