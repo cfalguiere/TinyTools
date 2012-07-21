@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #TODO all file when no file in repo
+#TODO ivy can't read the file (invalid characters)
 
 REPO=./repo
 
