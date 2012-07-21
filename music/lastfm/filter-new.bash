@@ -1,4 +1,7 @@
+#!/bin/bash
+
 #TODO all file when no file in repo
+
 REPO=./repo
 
 mkdir -p ${REPO}
@@ -8,16 +11,21 @@ do
 
      TAG_FILE=niftypuce_tag_${TAG}
 
-     cp -f ~/Downloads/${TAG_FILE}.tsv ${REPO}
+     if [ -f ${TAG_FILE}.tsv ]  
+     then 
 
-     CURRENT_FILE=${REPO}/${TAG_FILE}.tsv 
-     OLD_FILE=${REPO}/${TAG_FILE}.csv 
-     NEW_FILE=${TAG_FILE}_new.csv 
+     	cp -f ~/Downloads/${TAG_FILE}.tsv ${REPO}
 
-     comm -23 <(sort ${CURRENT_FILE}) <(sort ${OLD_FILE}) > ${NEW_FILE}
+    	 CURRENT_FILE=${REPO}/${TAG_FILE}.tsv 
+     	 OLD_FILE=${REPO}/${TAG_FILE}.csv 
+    	  NEW_FILE=${TAG_FILE}_new.csv 
 
-     find . -size 0 -name "*.csv" -exec rm -f '{}' \;  #remove empty files
+     	  comm -23 <(sort ${CURRENT_FILE}) <(sort ${OLD_FILE}) > ${NEW_FILE}
 
-     mv ${CURRENT_FILE} ${OLD_FILE}
+     	  find . -size 0 -name "*.csv" -exec rm -f '{}' \;  #remove empty files
+
+     	  mv ${CURRENT_FILE} ${OLD_FILE}
+     
+     fi 
 
 done
